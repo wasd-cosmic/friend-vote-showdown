@@ -123,8 +123,25 @@ function RootComponent() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
-      <Outlet />
+      <div className="min-h-screen">
+        <header className="border-b border-border bg-card/60">
+          <nav className="mx-auto flex max-w-3xl items-center justify-between px-5 py-4">
+            <Link to="/" className="text-sm font-semibold tracking-tight text-foreground">
+              Friend Group Quiz
+            </Link>
+            <div className="flex items-center gap-5 text-sm text-muted-foreground">
+              <Link to="/" activeProps={{ className: "text-foreground font-medium" }}>
+                Quiz
+              </Link>
+              <Link to="/results" activeProps={{ className: "text-foreground font-medium" }}>
+                Results
+              </Link>
+            </div>
+          </nav>
+        </header>
+        {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
+        <Outlet />
+      </div>
     </QueryClientProvider>
   );
 }
