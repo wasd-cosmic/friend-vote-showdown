@@ -70,7 +70,9 @@ export function namesForQuestion(questionId: number): Friend[] {
   const names = [...FRIENDS];
   for (let i = names.length - 1; i > 0; i--) {
     const j = Math.floor(rand() * (i + 1));
-    [names[i], names[j]] = [names[j], names[i]];
+    const tmp = names[i]!;
+    names[i] = names[j]!;
+    names[j] = tmp;
   }
   return names;
 }
