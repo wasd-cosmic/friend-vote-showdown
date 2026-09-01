@@ -77,19 +77,23 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Lovable App" },
-      { name: "description", content: "Lovable Generated Project" },
-      { name: "author", content: "Lovable" },
-      { property: "og:title", content: "Lovable App" },
-      { property: "og:description", content: "Lovable Generated Project" },
+      { title: "Friend Group Quiz" },
+      { name: "description", content: "A 40-question voting quiz for the group." },
+      { property: "og:title", content: "Friend Group Quiz" },
+      { property: "og:description", content: "A 40-question voting quiz for the group." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:site", content: "@Lovable" },
     ],
     links: [
       {
         rel: "stylesheet",
         href: appCss,
+      },
+      { rel: "preconnect", href: "https://fonts.googleapis.com" },
+      { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
+      {
+        rel: "stylesheet",
+        href: "https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap",
       },
       { rel: "icon", href: "/favicon.ico", type: "image/x-icon" },
     ],
@@ -119,8 +123,25 @@ function RootComponent() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
-      <Outlet />
+      <div className="min-h-screen">
+        <header className="border-b border-border bg-card/60">
+          <nav className="mx-auto flex max-w-3xl items-center justify-between px-5 py-4">
+            <Link to="/" className="text-sm font-semibold tracking-tight text-foreground">
+              Friend Group Quiz
+            </Link>
+            <div className="flex items-center gap-5 text-sm text-muted-foreground">
+              <Link to="/" activeProps={{ className: "text-foreground font-medium" }}>
+                Quiz
+              </Link>
+              <Link to="/results" activeProps={{ className: "text-foreground font-medium" }}>
+                Results
+              </Link>
+            </div>
+          </nav>
+        </header>
+        {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
+        <Outlet />
+      </div>
     </QueryClientProvider>
   );
 }
